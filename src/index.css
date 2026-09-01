@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink font-body antialiased;
+}
+
+h1, h2, h3, h4 {
+  @apply font-display;
+}
+
+::selection {
+  background: #C4C4FB;
+}
+
+/* the bridge motif: a dotted connector line used across the app */
+.bridge-line {
+  position: relative;
+  height: 2px;
+  background: linear-gradient(90deg, theme('colors.bridge.300'), theme('colors.ember.400'));
+  border-radius: 2px;
+}
+
+.bridge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: theme('colors.bridge.500');
+  box-shadow: 0 0 0 4px theme('colors.bridge.100');
+}
+
+@keyframes flow {
+  0% { left: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+.flow-dot {
+  position: absolute;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: theme('colors.ember.500');
+  animation: flow 3.2s linear infinite;
+}
+
+.card {
+  @apply bg-white rounded-2xl border border-ink/[0.06] shadow-card;
+}
+
+.btn-primary {
+  @apply bg-bridge-500 text-white font-semibold px-5 py-2.5 rounded-full hover:bg-bridge-600 transition-colors shadow-lift;
+}
+
+.btn-secondary {
+  @apply bg-white text-ink font-semibold px-5 py-2.5 rounded-full border border-ink/10 hover:border-bridge-300 hover:text-bridge-600 transition-colors;
+}
+
+.chip {
+  @apply text-xs font-medium px-2.5 py-1 rounded-full;
+}
+
+.skeleton {
+  @apply animate-pulse bg-ink/[0.06] rounded-lg;
+}
+
+/* focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid #5B5FEF;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
